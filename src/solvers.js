@@ -18,11 +18,9 @@
 window.findNRooksSolution = function (n) {
   var newBoard = new Board({ n: n });
   var solution = newBoard.rows();
-  var col = 0;
 
   for (var i = 0; i < n; i++) {
-    solution[i][col] = 1;
-    col++;
+    solution[i][i] = 1;
   }
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
@@ -64,4 +62,20 @@ window.countNQueensSolutions = function (n) {
 
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
+};
+
+var helper = function (row, col, matrix) {
+  var counter = 0;
+  for (var i = row; i < matrix.length; i++) {
+    if (counter === 0) {
+      for (var j = col; j < matrix.length; j++) {
+
+      }
+      counter++;
+    } else {
+      for (var l = 0; l < matrix.length; l++) {
+
+      }
+    }
+  }
 };
