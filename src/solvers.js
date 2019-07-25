@@ -64,6 +64,7 @@ window.findNQueensSolution = function (n) {
   var newBoard = new Board({ n: n });
   var solution = newBoard.rows();
 
+  // this is when # of solutions are the same as size of the board
   helper(newBoard, 0, n, function(board){
     return solution = board.rows();
   });
