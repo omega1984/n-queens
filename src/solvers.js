@@ -29,28 +29,28 @@ window.findNRooksSolution = function (n) {
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function (n) {
-  var solutionCount = 1;
+  var solution = 1;
 
   if (n === 0) {
     return 0;
   }
 
   for (var i = 1; i <= n; i++) {
-    solutionCount *= i;
+    solution *= i;
   }
 
-  console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
-  return solutionCount;
+  console.log('Number of solutions for ' + n + ' rooks:', solution);
+  return solution;
 };
 
-var helper = function(board, startRow, rows, callback){
-  if (startRow === rows){
+var helper = function(board, startRow, callback){
+  if (startRow === board.rows().length){
     return callback(board);
   }
-  for (var i = 0; i < rows; i++){
+  for (var i = 0; i < board.rows().length; i++){
     board.togglePiece(startRow, i);
     if (!board.hasAnyQueensConflicts()){
-      var result = helper(board, startRow+1, rows, callback);
+      var result = helper(board, startRow+1, callback);
       if (result){
         return result;
       }
@@ -65,7 +65,7 @@ window.findNQueensSolution = function (n) {
   var solution = newBoard.rows();
 
   // this is when # of solutions are the same as size of the board
-  helper(newBoard, 0, n, function(board){
+  helper(newBoard, 0, function(board){
     return solution = board.rows();
   });
 
@@ -75,13 +75,13 @@ window.findNQueensSolution = function (n) {
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function (n) {
-  var solutionCount = 0;
+  var solution = 0;
   var newBoard = new Board({n: n});
 
-  helper(newBoard, 0, n, function(board){
-    solutionCount++;
+  helper(newBoard, 0, function(board){
+    solution++;
   });
 
-  console.log('Number of solutions for ' + n + ' queens:', solutionCount);
-  return solutionCount;
+  console.log('Number of solutions for ' + n + ' queens:', solution);
+  return solution;
 };
